@@ -2,12 +2,11 @@ module WRITEBACK(
     input clock,
     input reset,
     input DE_regwrite,
-    input rd,
-    input EM_Result,
-    output [31:0] reg_omemory [10:0]
+    input [4:0] rd,
+    input [31:0] EM_Result
 );
  // 32 memory locations each 32 bits wide
-
+reg [31:0] reg_omemory [10:0];
         //  When reset is triggered, we initialize the registers with some values
     always @(posedge reset)
     begin

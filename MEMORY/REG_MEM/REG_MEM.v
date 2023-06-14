@@ -15,8 +15,8 @@ module REG_MEM(
         // Bear with me for now, I tried using loops, but it won't work
         // Just duct-taping this for now
          reg_imemory[0] = 32'h0;
-         reg_imemory[1] = 32'h1;
-         reg_imemory[2] = 32'h2;
+         reg_imemory[1] = 32'h0;
+         reg_imemory[2] = 32'h0;
          reg_imemory[3] = 32'h3;
          reg_imemory[4] = 32'h4;
          reg_imemory[5] = 32'h5;

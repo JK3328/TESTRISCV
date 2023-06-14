@@ -3,10 +3,10 @@
 module DECODE(
     input clock,
     input [31:0] FD_Inst_Code,
-    output reg [3:0] DE_control
-    output [31:0] in1;
-    output [31:0] in2;
-    output [4:0] rd;
+    output reg [3:0] DE_control,
+    output [31:0] in1,
+    output [31:0] in2,
+    output reg [4:0] rd
 );
     reg [2:0]funct3;
     reg [6:0]funct7;
@@ -15,12 +15,16 @@ module DECODE(
     reg [4:0]rs2;
     reg DE_regwrite;
 
-    assign funct3 = FD_Inst_Code[14:12];
-    assign funct7 = FD_Inst_Code[31:25];
-    assign opcode = FD_Inst_Code[6:0];
-    assign rs1 = FD_Inst_Code[19:15];
-    assign rs2 = FD_Inst_Code[24:20];
-    assign rd = FD_Inst_Code[11:7];
+      // Assign values to the internal signals within an always block
+    always @(posedge clock) begin
+        // Decode instruction and assign values to signals
+        funct3  = FD_Inst_Code[14:12];
+        funct7  = FD_Inst_Code[31:25];
+        opcode  = FD_Inst_Code[6:0];
+        rs1     = FD_Inst_Code[19:15];
+        rs2     = FD_Inst_Code[24:20];
+        rd      = FD_Inst_Code[11:7];
+    end
 
 
     REG_MEM reg_file_module(
@@ -43,7 +47,6 @@ module DECODE(
                 0: begin
                     if(funct7 == 0)
                     DE_control = 4'b0010; // ADD
-                    DE_regwrite = 0;
                     else if(funct7 == 32)
                     DE_control = 4'b0100; // SUB
                 end

@@ -3,13 +3,18 @@
 module FETCH(
     input clock,
     input reset,
-    input [7:0] MD_Memory,
     output [31:0] FD_Inst_code
 );
 reg [31:0] PC = 32'b0;  // 32-bit program counter is initialized to zero
-
+wire [7:0] MD_Memory;
     // Initializing the instruction memory block
-    INST_MEM instr_mem(PC,reset,MD_Memory);
+    INST_MEM inst_mem (
+        .PC(PC),
+        .reset(reset),
+        .clock(clock),
+        .MD_Memory(MD_Memory)
+    );
+
 
     assign FD_Inst_Code = {MD_Memory[PC+3],MD_Memory[PC+2],MD_Memory[PC+1],MD_Memory[PC]};
 

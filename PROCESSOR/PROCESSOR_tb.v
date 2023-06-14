@@ -10,7 +10,7 @@ module stimulus ();
     PROCESSOR test_processor(clock,reset,zero);
 
     initial begin
-        $dumpfile("processor_wave.vcd");
+        $dumpfile("PROCESSOR_wave2.vcd");
         $dumpvars(0,stimulus);
     end
 
