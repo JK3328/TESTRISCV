@@ -12,8 +12,7 @@ module REG_MEM(
     //  When reset is triggered, we initialize the registers with some values
     always @(posedge reset)
     begin
-        // Bear with me for now, I tried using loops, but it won't work
-        // Just duct-taping this for now
+
          reg_imemory[0] = 32'h0;
          reg_imemory[1] = 32'h0;
          reg_imemory[2] = 32'h0;
